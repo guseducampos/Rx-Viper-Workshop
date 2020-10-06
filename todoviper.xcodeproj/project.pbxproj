@@ -20,6 +20,10 @@
 		285A66C12523A9ED0026FF7F /* ListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285A66C02523A9ED0026FF7F /* ListInteractor.swift */; };
 		285A66C72523AE730026FF7F /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285A66C62523AE730026FF7F /* ListPresenter.swift */; };
 		285A66D02523AF2A0026FF7F /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285A66CF2523AF2A0026FF7F /* ListViewController.swift */; };
+		28D577E7252CCFE700576E27 /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D577E6252CCFE700576E27 /* DetailInteractor.swift */; };
+		28D577EC252CD48C00576E27 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D577EB252CD48C00576E27 /* DetailPresenter.swift */; };
+		28D577F1252CD7DE00576E27 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D577F0252CD7DE00576E27 /* DetailViewController.swift */; };
+		28D577F6252CDA0700576E27 /* ListModuleWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D577F5252CDA0700576E27 /* ListModuleWireFrame.swift */; };
 		66B60D4D86F3A2BD308990CD /* Pods_todoviperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B5BF1407CD476F56357A1C /* Pods_todoviperTests.framework */; };
 		99C65012FFEE29AAB4817374 /* Pods_todoviper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2C6121737AADED45F22A40 /* Pods_todoviper.framework */; };
 		E5F35065EB811311660E5FAB /* Pods_todoviper_todoviperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72117FB2A576B6240009B25D /* Pods_todoviper_todoviperUITests.framework */; };
@@ -64,6 +68,10 @@
 		285A66C02523A9ED0026FF7F /* ListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractor.swift; sourceTree = "<group>"; };
 		285A66C62523AE730026FF7F /* ListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
 		285A66CF2523AF2A0026FF7F /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		28D577E6252CCFE700576E27 /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
+		28D577EB252CD48C00576E27 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
+		28D577F0252CD7DE00576E27 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		28D577F5252CDA0700576E27 /* ListModuleWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModuleWireFrame.swift; sourceTree = "<group>"; };
 		68ABDCCA2B3BA07AE4989D43 /* Pods-todoviper-todoviperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-todoviper-todoviperUITests.release.xcconfig"; path = "Target Support Files/Pods-todoviper-todoviperUITests/Pods-todoviper-todoviperUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6C2C6121737AADED45F22A40 /* Pods_todoviper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_todoviper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72117FB2A576B6240009B25D /* Pods_todoviper_todoviperUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_todoviper_todoviperUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +134,7 @@
 		285A666F25239E460026FF7F /* todoviper */ = {
 			isa = PBXGroup;
 			children = (
+				28AB398D2524E5C3001FF8DD /* ListDetailModule */,
 				285A66A32523A06B0026FF7F /* ListModule */,
 				285A667025239E460026FF7F /* AppDelegate.swift */,
 				285A667225239E460026FF7F /* SceneDelegate.swift */,
@@ -172,6 +181,7 @@
 				285A66B72523A2D00026FF7F /* DatManager */,
 				285A66AD2523A14F0026FF7F /* Interactor */,
 				285A66A42523A0E60026FF7F /* Entity */,
+				28D577F5252CDA0700576E27 /* ListModuleWireFrame.swift */,
 			);
 			path = ListModule;
 			sourceTree = "<group>";
@@ -214,6 +224,40 @@
 				285A66CF2523AF2A0026FF7F /* ListViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		28AB398D2524E5C3001FF8DD /* ListDetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				28AB39902524E618001FF8DD /* Interactor */,
+				28AB398F2524E612001FF8DD /* Presenter */,
+				28AB398E2524E60C001FF8DD /* View */,
+			);
+			path = ListDetailModule;
+			sourceTree = "<group>";
+		};
+		28AB398E2524E60C001FF8DD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				28D577F0252CD7DE00576E27 /* DetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		28AB398F2524E612001FF8DD /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				28D577EB252CD48C00576E27 /* DetailPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		28AB39902524E618001FF8DD /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				28D577E6252CCFE700576E27 /* DetailInteractor.swift */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 		4FE2623AB9A5F64763A2AC7E /* Pods */ = {
@@ -477,9 +521,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28D577F1252CD7DE00576E27 /* DetailViewController.swift in Sources */,
 				285A66C72523AE730026FF7F /* ListPresenter.swift in Sources */,
 				285A66C12523A9ED0026FF7F /* ListInteractor.swift in Sources */,
 				285A66A62523A1120026FF7F /* Item.swift in Sources */,
+				28D577F6252CDA0700576E27 /* ListModuleWireFrame.swift in Sources */,
+				28D577EC252CD48C00576E27 /* DetailPresenter.swift in Sources */,
+				28D577E7252CCFE700576E27 /* DetailInteractor.swift in Sources */,
 				285A66B92523A2DE0026FF7F /* DataManager.swift in Sources */,
 				285A667125239E460026FF7F /* AppDelegate.swift in Sources */,
 				285A667325239E460026FF7F /* SceneDelegate.swift in Sources */,

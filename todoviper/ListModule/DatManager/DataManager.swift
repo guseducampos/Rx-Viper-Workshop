@@ -28,6 +28,10 @@ struct DataManager: DataManagerType {
         items.append(item)
         let newData = try! JSONEncoder().encode(items)
         userDefaults.set(newData, forKey: "Items")
-        return Observable.just(())
+        return Observable.create { observer in
+            observer.onNext(())
+            observer.onCompleted()
+            return Disposables.create()
+        }
     }
 }

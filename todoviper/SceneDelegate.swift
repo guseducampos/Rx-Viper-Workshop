@@ -20,9 +20,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UINavigationController(
-                rootViewController: ListViewController()
+
+            let interactor = ListInteractor(dataManager: DataManager())
+
+            let navigation = UINavigationController()
+
+            let presenter = ListPresenter(
+                interactor: interactor,
+                wireFrame:
+                    ListModuleWireFrame(
+                        navigationController: navigation
+                    )
             )
+
+            let listViewController = ListViewController(presenter: presenter)
+            navigation.setViewControllers([listViewController], animated: true)
+        
+            window.rootViewController = navigation
+
             self.window = window
             window.makeKeyAndVisible()
         }

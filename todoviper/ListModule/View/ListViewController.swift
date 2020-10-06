@@ -6,12 +6,16 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 enum Section: CaseIterable {
     case main
 }
 
-class ListViewController: UIViewController {
+class ListViewController: UIViewController,UICollectionViewDelegate {
+    private var bag = DisposeBag()
+
     let collectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: .init())
         collection.translatesAutoresizingMaskIntoConstraints = false
@@ -30,19 +34,36 @@ class ListViewController: UIViewController {
         cell.accessories = [.disclosureIndicator()]
     }
 
+    let presenter: ListPresenterType
+
+    init(presenter: ListPresenterType) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupView()
-        applySnapshot()
+
+        presenter
+            .list
+            .subscribe { [weak self] items in
+                self?.applySnapshot(items)
+            }.disposed(by: bag)
+
+        presenter.getItems()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        let addAction = UIAction { action in
-
+        let addAction = UIAction {[weak self] action in
+            self?.addItem()
         }
         let barButtonItem = UIBarButtonItem(systemItem: .add,
                                             primaryAction: addAction,
@@ -63,13 +84,29 @@ class ListViewController: UIViewController {
         var config = UICollectionLayoutListConfiguration(appearance: .plain)
         config.backgroundColor = .white
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout.list(using: config)
+
+        collectionView
+            .rx
+            .itemSelected
+            .subscribe {[weak self] event in
+                guard let index = event.element,
+                      let item = self?.datasource.itemIdentifier(for: index) else {
+                    return
+                }
+
+                self?.presenter.showDetail(id: item.id.uuidString)
+            }.disposed(by: bag)
     }
 
-    func applySnapshot() {
+    func applySnapshot(_ items: [Item]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(Section.allCases)
-        snapshot.appendItems([])
+        snapshot.appendItems(items)
 
         datasource.apply(snapshot)
+    }
+
+    func addItem() {
+        presenter.save(.init(name: "New Item"))
     }
 }
